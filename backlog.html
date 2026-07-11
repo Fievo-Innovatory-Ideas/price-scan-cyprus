@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Backlog — PriceScan Cyprus</title>
+<meta name="description" content="The full prioritised backlog behind PriceScan Cyprus — 37 documented items across matching, data quality, cost, and UX.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="index.html"><img src="images/logo.png" alt="PriceScan Cyprus logo" class="nav-logo">PriceScan Cyprus</a>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="case-study.html">Case Study</a>
+    <a class="nav-link active" href="backlog.html">The Backlog</a>
+  </div>
+</nav>
+
+<header class="hero wrap" style="padding-bottom:1rem">
+  <p class="kicker">The work, item by item</p>
+  <h1>The backlog</h1>
+  <p class="lede">Every item below is a real, documented unit of work — most shipped with a written
+  spec or write-up covering the problem, the decision, and the alternatives rejected. Filter by
+  theme to see how effort was allocated: the concentration on <b>matching, identity and data
+  quality</b> is deliberate — that's where this product wins or loses. (The programme's ticket
+  numbering runs to PCT-047; foundation tickets are grouped here and a few internal-only items
+  are omitted, giving 37 entries.)</p>
+  <div id="filters" class="filters"></div>
+  <p class="backlog-count" id="count"></p>
+</header>
+
+<main class="wrap" style="padding-bottom:3.5rem">
+  <div id="list" class="backlog-list"></div>
+</main>
+
+<footer class="site">
+  <div class="wrap">© 2026 Marios Papasavvas · Item summaries condensed from the programme's docs index; ticket IDs are real.</div>
+</footer>
+
+<script src="data/backlog.js"></script>
+<script>
+(function () {
+  var listEl = document.getElementById("list");
+  var filtersEl = document.getElementById("filters");
+  var countEl = document.getElementById("count");
+  var active = "All";
+
+  var themes = ["All"];
+  BACKLOG.forEach(function (item) {
+    if (themes.indexOf(item.theme) === -1) themes.push(item.theme);
+  });
+
+  function statusPill(status) {
+    var cls = "green";
+    if (/Proposed|Spec/.test(status)) cls = "blue";
+    else if (/Partially|Ongoing|P0/.test(status)) cls = "amber";
+    return '<span class="pill ' + cls + '">' + status + "</span>";
+  }
+
+  function render() {
+    var items = active === "All" ? BACKLOG : BACKLOG.filter(function (i) { return i.theme === active; });
+    countEl.textContent = items.length + " of " + BACKLOG.length + " items" + (active === "All" ? "" : " · " + active);
+    listEl.innerHTML = items.map(function (i) {
+      return '<article class="bl-item">' +
+        '<div class="bl-top"><span class="bl-id">' + i.id + '</span>' +
+        '<span class="bl-title">' + i.title + '</span></div>' +
+        '<p class="bl-summary">' + i.summary + "</p>" +
+        '<div class="bl-tags"><span class="pill grey">' + i.theme + '</span>' +
+        '<span class="pill grey">' + i.type + "</span>" + statusPill(i.status) + "</div>" +
+        "</article>";
+    }).join("");
+  }
+
+  filtersEl.innerHTML = themes.map(function (t) {
+    return '<button data-theme="' + t + '">' + t + "</button>";
+  }).join("");
+  filtersEl.addEventListener("click", function (e) {
+    var btn = e.target.closest("button");
+    if (!btn) return;
+    active = btn.getAttribute("data-theme");
+    Array.prototype.forEach.call(filtersEl.children, function (b) {
+      b.classList.toggle("on", b === btn);
+    });
+    render();
+  });
+  filtersEl.querySelector("button").classList.add("on");
+  render();
+})();
+</script>
+
+</body>
+</html>
