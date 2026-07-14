@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Case Study — PriceScan Cyprus</title>
-<meta name="description" content="How PriceScan Cyprus went from idea to a live, data-heavy product — discovery, specs, prioritisation, data pipelines, and the trade-offs in between.">
+<title>Case Study - PriceScan Cyprus</title>
+<meta name="description" content="How PriceScan Cyprus went from idea to a live, data-heavy product - discovery, specs, prioritisation, data pipelines, and the trade-offs in between.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -26,7 +26,7 @@
   <h1>Do you know if you're overpaying for groceries?<br>Most people in Cyprus don't.</h1>
   <p class="lede">PriceScan Cyprus answers that question in one photo: snap a receipt or a
   shelf tag, and see how the price compares against your own history and every store's catalog.
-  I led the product from concept to live — this is the full story: discovery, specs,
+  I led the product from concept to live - this is the full story: discovery, specs,
   prioritisation, data, and the trade-offs in between.</p>
 
   <div class="metrics">
@@ -46,10 +46,10 @@
       <div>
         <p>Cyprus has a handful of supermarket chains, no public price-comparison infrastructure,
         and persistent food inflation. Shoppers have no way to know whether €4.19 for a specific
-        detergent is a good price, a normal price, or a rip-off — the information exists only as
+        detergent is a good price, a normal price, or a rip-off - the information exists only as
         a memory of past shopping trips.</p>
-        <p>The insight: <b>every shopper already collects the data that would answer this — their
-        receipts — and throws it away.</b> A receipt is a structured price list, timestamped and
+        <p>The insight: <b>every shopper already collects the data that would answer this - their
+        receipts - and throws it away.</b> A receipt is a structured price list, timestamped and
         store-attributed. If capturing it were effortless, each user would build a personal price
         history, and the aggregate would become a live market database no retailer publishes.</p>
         <p>Target user: the household's primary shopper. Core jobs-to-be-done: <i>"Tell me if this
@@ -69,31 +69,31 @@
     <p class="kicker">02 · Discovery</p>
     <h2>Prototype before product: validate with the cheapest possible build</h2>
     <p>Before committing engineering effort to a full application, I validated the entire concept
-    as an AI-assistant prototype — a prompt-and-JSON build that read receipt photos, tracked price
+    as an AI-assistant prototype - a prompt-and-JSON build that read receipt photos, tracked price
     history in a flat file, and gave buy/wait verdicts on shelf tags, at a fraction of the cost of
     a real build.</p>
     <p>The prototype answered the three riskiest questions:</p>
     <div class="grid cols-3" style="margin-top:1.2rem">
-      <div class="card"><h3>Can AI vision read real receipts?</h3><p>Yes — including Greek-language thermal receipts with abbreviations and crumples. Accuracy was good enough to build on.</p></div>
-      <div class="card"><h3>Is the verdict useful?</h3><p>Yes — "you paid €2.85 for this last month at Lidl" changes purchase decisions in the aisle. The value moment was real.</p></div>
-      <div class="card"><h3>Where does it break?</h3><p>Product identity. "Whole Milk 1L" vs "Full Fat Milk 1lt" vs "ΓΑΛΑ ΦΡΕΣΚΟ" — matching products across wordings, languages and stores is the actual hard problem.</p></div>
+      <div class="card"><h3>Can AI vision read real receipts?</h3><p>Yes - including Greek-language thermal receipts with abbreviations and crumples. Accuracy was good enough to build on.</p></div>
+      <div class="card"><h3>Is the verdict useful?</h3><p>Yes - "you paid €2.85 for this last month at Lidl" changes purchase decisions in the aisle. The value moment was real.</p></div>
+      <div class="card"><h3>Where does it break?</h3><p>Product identity. "Whole Milk 1L" vs "Full Fat Milk 1lt" vs "ΓΑΛΑ ΦΡΕΣΚΟ" - matching products across wordings, languages and stores is the actual hard problem.</p></div>
     </div>
     <p style="margin-top:1.2rem">That third finding shaped the entire roadmap: the moat isn't the
-    OCR (commodity) or the UI (table stakes) — it's a <b>clean, deduplicated, cross-store,
+    OCR (commodity) or the UI (table stakes) - it's a <b>clean, deduplicated, cross-store,
     cross-language product catalog</b>. Most of the 47 backlog items serve that thesis.</p>
 
     <h3 style="margin-top:2.6rem">The five user stories that framed the MVP</h3>
     <p>Discovery produced dozens of candidate stories; these five were prioritised to the top of
-    the backlog — each with explicit acceptance criteria, and each traceable to the tickets that
+    the backlog - each with explicit acceptance criteria, and each traceable to the tickets that
     shipped it:</p>
     <div class="stories">
 
       <div class="card story">
-        <div class="story-tags"><span class="pill blue">US-1 · P0</span><span class="pill grey">shipped as PCT-001–004</span></div>
+        <div class="story-tags"><span class="pill blue">US-1 · P0</span><span class="pill grey">shipped as PCT-001-004</span></div>
         <p><b>As</b> the household's primary shopper, <b>I want</b> to photograph my receipt and have
         every line captured automatically, <b>so that</b> I build a price history without any manual
         data entry.</p>
-        <p class="accept"><b>Accepted when:</b> a legible receipt photo — including Greek thermal receipts —
+        <p class="accept"><b>Accepted when:</b> a legible receipt photo - including Greek thermal receipts - 
         produces structured line items (product, quantity, price, store, date) with no typing.</p>
       </div>
 
@@ -108,7 +108,7 @@
       <div class="card story">
         <div class="story-tags"><span class="pill blue">US-3 · P0</span><span class="pill grey">shipped as PCT-016 · 020 · 028</span></div>
         <p><b>As</b> a returning user, <b>I want</b> the app to recognise the same product across stores,
-        wordings and languages, <b>so that</b> my comparisons are about prices — not spelling.</p>
+        wordings and languages, <b>so that</b> my comparisons are about prices - not spelling.</p>
         <p class="accept"><b>Accepted when:</b> one physical product never forks into duplicates across
         retailers or languages, and two different pack sizes are never silently merged.</p>
       </div>
@@ -138,13 +138,13 @@
     <p class="kicker">03 · Inside the product</p>
     <h2>Three moments that carry the experience</h2>
     <p class="lede">The product lives on the phone, in the aisle and at the kitchen table. These are
-    the screens where it earns its keep — each one shaped by the identity and trust work described
+    the screens where it earns its keep - each one shaped by the identity and trust work described
     below.</p>
     <div class="phones-row">
 
       <figure>
         <div class="phone"><img src="images/camera-scan.jpg" alt="Live scanner in a supermarket aisle locking onto a Cif Cream shelf tag: price, unit price and barcode in frame with the scanning guide overlay" style="width:100%;display:block;border-radius:24px"></div>
-        <figcaption class="figcap">In the aisle: the scanner locking onto a shelf tag — price, €/L and barcode in one frame.</figcaption>
+        <figcaption class="figcap">In the aisle: the scanner locking onto a shelf tag - price, €/L and barcode in one frame.</figcaption>
       </figure>
 
       <figure>
@@ -168,33 +168,33 @@
     <h2>Foundations first, trust last: four phases</h2>
     <ul class="timeline">
       <li>
-        <span class="tdate">Phase 1 — Foundation</span>
-        <h3>Schema, auth, AI receipt scanning (PCT-001–004)</h3>
+        <span class="tdate">Phase 1 - Foundation</span>
+        <h3>Schema, auth, AI receipt scanning (PCT-001-004)</h3>
         <p>Next.js + Supabase + Vercel. The data model was designed around a 4-level product-match
-        hierarchy from day one — because discovery proved identity was the hard problem, the
+        hierarchy from day one - because discovery proved identity was the hard problem, the
         schema anticipated it before the first feature shipped.</p>
       </li>
       <li>
-        <span class="tdate">Phase 2 — The catalog</span>
-        <h3>Match scoring, price-check mode, admin backend (PCT-005–017)</h3>
+        <span class="tdate">Phase 2 - The catalog</span>
+        <h3>Match scoring, price-check mode, admin backend (PCT-005-017)</h3>
         <p>Confidence tiers on every match (Perfect → Almost → Fuzzy), a shelf-tag flow that saves
         price observations without a purchase, barcode-first matching, and back-office tooling for
-        catalog curation — built early, because a catalog you can't curate rots.</p>
+        catalog curation - built early, because a catalog you can't curate rots.</p>
       </li>
       <li>
-        <span class="tdate">Phase 3 — Data at scale</span>
-        <h3>Competitor imports, multipacks, loose produce (PCT-019–028)</h3>
+        <span class="tdate">Phase 3 - Data at scale</span>
+        <h3>Competitor imports, multipacks, loose produce (PCT-019-028)</h3>
         <p>Automated importers brought in three retailer catalogs (11,000+ items processed,
         1,666 competitor prices committed from the first source). Scale immediately exposed data-model
-        gaps — multipacks, loose produce sold by weight, unit-price drift — each fixed at the database
+        gaps - multipacks, loose produce sold by weight, unit-price drift - each fixed at the database
         level, not patched in the UI.</p>
       </li>
       <li>
-        <span class="tdate">Phase 4 — Trust & unit economics</span>
-        <h3>Data quality systems, cost reduction (PCT-029–047)</h3>
+        <span class="tdate">Phase 4 - Trust & unit economics</span>
+        <h3>Data quality systems, cost reduction (PCT-029-047)</h3>
         <p>Duplicate-receipt blocking, a self-reinforcing product-duplication loop root-caused and
         fixed, barcode misread distrust, and a 53% cut in AI cost per user. This phase was
-        deliberately dedicated to making the data trustworthy — because a price comparison built
+        deliberately dedicated to making the data trustworthy - because a price comparison built
         on dirty data is worse than none.</p>
       </li>
     </ul>
@@ -207,18 +207,18 @@
     <h2>Product identity: when is "the same product" the same product?</h2>
     <p>Every price comparison stands or falls on one question: are these two rows the same item?
     Get it wrong one way and the catalog forks into duplicates (four identical "Bananas", each with
-    one price — a real bug we root-caused). Get it wrong the other way and different products merge,
+    one price - a real bug we root-caused). Get it wrong the other way and different products merge,
     silently corrupting every comparison.</p>
     <p>The governing principle I adopted, and encoded into the system as hard rules:</p>
     <blockquote>
       <b>Barcode is evidence. Attributes are hypothesis.</b> A valid barcode that resolves to a
-      product outranks any amount of name/brand/pack similarity — and two products with different
+      product outranks any amount of name/brand/pack similarity - and two products with different
       barcodes are never merge candidates, no matter how alike they look.
-      <footer>Identity model — encoded as hard vetoes in the matching engine and the admin merge tooling</footer>
+      <footer>Identity model - encoded as hard vetoes in the matching engine and the admin merge tooling</footer>
     </blockquote>
     <p>The matching pipeline this produced, with every match labelled by an honest confidence tier.
     When a barcode's resolved brand clashes with what's printed on the label, the system distrusts
-    its own read and falls back — trust the barcode, but verify it:</p>
+    its own read and falls back - trust the barcode, but verify it:</p>
 
     <figure class="figure fig-panel">
       <svg viewBox="0 0 880 200" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" role="img" aria-label="Matching pipeline: barcode, then learned aliases, then attribute scoring, then user confirmation">
@@ -256,7 +256,7 @@
         </g>
         <g>
           <rect x="10" y="150" width="860" height="38" rx="10" fill="#fef3e2"/>
-          <text x="440" y="174" text-anchor="middle" font-size="12.5" font-weight="600" fill="#b45309">Hard veto: a candidate whose own barcode conflicts with the scanned one can never rank as a match — no matter how similar it looks.</text>
+          <text x="440" y="174" text-anchor="middle" font-size="12.5" font-weight="600" fill="#b45309">Hard veto: a candidate whose own barcode conflicts with the scanned one can never rank as a match - no matter how similar it looks.</text>
         </g>
       </svg>
       <figcaption class="figcap">The identity pipeline. Each stage only runs if the stronger evidence above it produced nothing.</figcaption>
@@ -264,7 +264,7 @@
 
     <p>The unsolved frontier is documented too: Greek and English catalog entries are disjoint
     "script islands" that only barcodes bridge ("Village Flour" ↔ "Αλεύρι Χωριάτικο"). The
-    embedding-retrieval spec proposes multilingual embeddings as a retrieval layer — while
+    embedding-retrieval spec proposes multilingual embeddings as a retrieval layer - while
     deliberately keeping the identity rules unchanged, because recall and identity are different
     problems.</p>
   </div>
@@ -288,16 +288,16 @@
         <p class="dlabel">Data integrity</p>
         <h3>Duplicate receipts: app-level fingerprint, not a DB constraint</h3>
         <p class="drow"><b>Trade-off:</b> a UNIQUE constraint would be bulletproof; a fingerprint check can be bypassed.</p>
-        <p class="drow"><b>Why:</b> OCR is nondeterministic — an exact-contents key produces false negatives, and a hard constraint removes the override path legitimate edge cases need. I also rejected the "obvious" time-based key because receipts don't reliably capture time.</p>
+        <p class="drow"><b>Why:</b> OCR is nondeterministic - an exact-contents key produces false negatives, and a hard constraint removes the override path legitimate edge cases need. I also rejected the "obvious" time-based key because receipts don't reliably capture time.</p>
         <p class="drow"><b>Result:</b> exact duplicates blocked with a clear message; review screen warns early via the same shared fingerprint module, so warning and block can never drift apart.</p>
       </div>
 
       <div class="card decision">
         <p class="dlabel">Unit economics</p>
-        <h3>Cut AI cost 53% — behind an A/B flag, not a leap of faith</h3>
+        <h3>Cut AI cost 53% - behind an A/B flag, not a leap of faith</h3>
         <p class="drow"><b>Trade-off:</b> a 500-row catalog dump in every scan prompt improved name reuse but was ~65% of input tokens.</p>
-        <p class="drow"><b>Why:</b> the database already did that matching better. But "should be fine" isn't evidence — the removal shipped gated behind a flag so it's an A/B flip, not a rewrite.</p>
-        <p class="drow"><b>Result:</b> $3.06 → $1.45 per user/month, on a path below $1 — the difference between a freemium tier that bleeds money and one that doesn't.</p>
+        <p class="drow"><b>Why:</b> the database already did that matching better. But "should be fine" isn't evidence - the removal shipped gated behind a flag so it's an A/B flip, not a rewrite.</p>
+        <p class="drow"><b>Result:</b> $3.06 → $1.45 per user/month, on a path below $1 - the difference between a freemium tier that bleeds money and one that doesn't.</p>
         <svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif" style="width:100%;max-width:320px;margin-top:0.9rem" role="img" aria-label="Bar chart: AI cost per user per month fell from $3.06 to $1.45, with a target below $1">
           <g font-size="12" font-weight="700">
             <rect x="20"  y="20" width="70" height="88" rx="6" fill="#71807a"/>
@@ -319,7 +319,7 @@
         <p class="dlabel">Data model</p>
         <h3>Loose produce compares on €/kg, not receipt total</h3>
         <p class="drow"><b>Trade-off:</b> comparing totals is simpler; but 0.62 kg of tomatoes vs 0.48 kg of tomatoes on total price is a meaningless comparison.</p>
-        <p class="drow"><b>Why:</b> the comparison basis must come from what the product <i>is</i> (loose, sold by weight) — sourced from the matched catalog product, not from the vision model's per-line guess. Fixing that dual source of truth was its own ticket.</p>
+        <p class="drow"><b>Why:</b> the comparison basis must come from what the product <i>is</i> (loose, sold by weight) - sourced from the matched catalog product, not from the vision model's per-line guess. Fixing that dual source of truth was its own ticket.</p>
         <p class="drow"><b>Result:</b> produce prices are finally comparable across stores and trips.</p>
       </div>
 
@@ -327,7 +327,7 @@
         <p class="dlabel">Scope discipline</p>
         <h3>Shipping a removal: the manual mode switch</h3>
         <p class="drow"><b>Trade-off:</b> keeping a "switch to receipt/label mode" control felt safe.</p>
-        <p class="drow"><b>Why:</b> auto-detection had zero observed misreads. A control nobody needs is friction and surface area — and the observation data existed to prove it.</p>
+        <p class="drow"><b>Why:</b> auto-detection had zero observed misreads. A control nobody needs is friction and surface area - and the observation data existed to prove it.</p>
         <p class="drow"><b>Result:</b> one less decision for the user in an in-aisle flow where seconds matter.</p>
       </div>
 
@@ -336,7 +336,7 @@
         <h3>Origin-in-brand convention instead of a new column</h3>
         <p class="drow"><b>Trade-off:</b> "add an origin column" was the obvious fix for Chiquita vs local bananas looking identical.</p>
         <p class="drow"><b>Why:</b> origin behaves exactly like brand in matching (it differentiates price points), so a naming convention rides the existing brand-aware matching with zero migration risk.</p>
-        <p class="drow"><b>Result:</b> different-priced produce is distinguishable, identical produce matches — no schema change.</p>
+        <p class="drow"><b>Result:</b> different-priced produce is distinguishable, identical produce matches - no schema change.</p>
       </div>
 
     </div>
@@ -348,8 +348,8 @@
     <p class="kicker">07 · Big data</p>
     <h2>From one user's receipts to a market-wide database</h2>
     <p>Personal price history is useful; a market database is a product. I specified, prioritised
-    and shipped automated importers for three retailer catalogs — <b>1,666 competitor prices
-    committed from Alphamega, 9,005 items parsed from SupermarketCy, 455 from Wolt/Metro</b> —
+    and shipped automated importers for three retailer catalogs - <b>1,666 competitor prices
+    committed from Alphamega, 9,005 items parsed from SupermarketCy, 455 from Wolt/Metro</b> - 
     normalised into the same product identity model the scans use.</p>
 
     <figure class="figure fig-panel">
@@ -421,9 +421,9 @@
 
     <div class="flow">
       <div class="card"><h3>Dry-run by default</h3><p>Every importer produces a preview CSV first and writes nothing without an explicit <code>--commit</code>. Data pipelines that write on first run destroy catalogs.</p></div>
-      <div class="card"><h3>Normalise at the database, not the UI</h3><p>Unit prices (€/kg, €/L, €/item) are computed by Postgres triggers — editing a product's pack size recomputes its entire price history automatically. One source of truth, zero drift.</p></div>
+      <div class="card"><h3>Normalise at the database, not the UI</h3><p>Unit prices (€/kg, €/L, €/item) are computed by Postgres triggers - editing a product's pack size recomputes its entire price history automatically. One source of truth, zero drift.</p></div>
       <div class="card"><h3>Respect the identity model</h3><p>Imported rows pass through the same barcode → alias → attribute matching as user scans. An importer that mints duplicates is worse than no importer.</p></div>
-      <div class="card"><h3>Learn from failure at scale</h3><p>Scale surfaced silent defects — a database client that quietly capped results at 1,000 rows, imports that stored pack size as purchase quantity. Each got a root-cause write-up and a structural fix, not a patch.</p></div>
+      <div class="card"><h3>Learn from failure at scale</h3><p>Scale surfaced silent defects - a database client that quietly capped results at 1,000 rows, imports that stored pack size as purchase quantity. Each got a root-cause write-up and a structural fix, not a patch.</p></div>
     </div>
   </div>
 </section>
@@ -433,11 +433,11 @@
     <p class="kicker">08 · Trust</p>
     <h2>A price comparison is only as good as its worst data</h2>
     <p>An entire phase of the roadmap was deliberately spent on data-quality systems rather than
-    new features — because every corrupted row silently degrades every future comparison:</p>
+    new features - because every corrupted row silently degrades every future comparison:</p>
     <div class="grid cols-2" style="margin-top:1.2rem">
       <div class="card"><h3>Duplicate-receipt defence in depth</h3><p>Early warning on the review screen, hard block at save, one shared fingerprint module powering both.</p></div>
-      <div class="card"><h3>Root-caused duplication loop</h3><p>A swallowed database error was being read as "no match", minting a duplicate product on every scan — self-reinforcing after the first accident. Found it, fixed it structurally, then built an admin duplicate finder with hard merge vetoes.</p></div>
-      <div class="card"><h3>Instrumentation before optimisation</h3><p>When barcode reads failed, the logs couldn't say why. Diagnostics shipped first (raw digits, rejection reasons), then the fixes — decisions from data, not anecdotes.</p></div>
+      <div class="card"><h3>Root-caused duplication loop</h3><p>A swallowed database error was being read as "no match", minting a duplicate product on every scan - self-reinforcing after the first accident. Found it, fixed it structurally, then built an admin duplicate finder with hard merge vetoes.</p></div>
+      <div class="card"><h3>Instrumentation before optimisation</h3><p>When barcode reads failed, the logs couldn't say why. Diagnostics shipped first (raw digits, rejection reasons), then the fixes - decisions from data, not anecdotes.</p></div>
       <div class="card"><h3>Honest confidence language</h3><p>Badges distinguish "Barcode match" (verified) from "Exact match" (inferred). Users should never trust the system more than the system trusts itself.</p></div>
     </div>
 
@@ -453,11 +453,11 @@
     next: multilingual embedding retrieval to bridge the Greek/English catalog islands, more retailer
     sources, and the freemium pricing the unit-economics work was done to enable.</p>
     <p>Just as important, the programme is <b>built to hand over</b>: all 47 items live in an indexed
-    docs folder — specs with problem statements, goals and non-goals; write-ups with root causes and
+    docs folder - specs with problem statements, goals and non-goals; write-ups with root causes and
     rejected alternatives. A new engineer or PM could pick it up from the documentation alone.</p>
 
     <h3 style="margin-top:2.6rem">Where PriceScan sits on the product lifecycle</h3>
-    <p>An honest read: PriceScan is in the <b>Introduction</b> stage — and the strategy for every
+    <p>An honest read: PriceScan is in the <b>Introduction</b> stage - and the strategy for every
     later stage is already mapped, because the decisions that make Growth affordable (unit
     economics) and Maturity possible (a defensible data asset) had to be taken now, not later.</p>
 
@@ -500,37 +500,37 @@
           <text x="750" y="212" text-anchor="middle" fill="#71807a">DECLINE</text>
         </g>
       </svg>
-      <figcaption class="figcap">The lifecycle isn't something that happens to a product — each stage is prepared for one stage earlier.</figcaption>
+      <figcaption class="figcap">The lifecycle isn't something that happens to a product - each stage is prepared for one stage earlier.</figcaption>
     </figure>
 
     <div class="grid cols-2" style="margin-top:1.4rem">
       <div class="card plc-current">
         <div class="story-tags" style="display:flex;gap:0.45rem;margin-bottom:0.5rem"><span class="pill green">Now</span></div>
-        <h3>Introduction — earn trust, seed the asset</h3>
-        <p>Focus: retention and data quality over reach — a price database users distrust is dead on
+        <h3>Introduction - earn trust, seed the asset</h3>
+        <p>Focus: retention and data quality over reach - a price database users distrust is dead on
         arrival. North-star metric: weekly scans per active user. Free while the catalog seeds;
         every scan makes the product better for the next user.</p>
       </div>
       <div class="card">
         <div class="story-tags" style="display:flex;gap:0.45rem;margin-bottom:0.5rem"><span class="pill grey">Prepared</span></div>
-        <h3>Growth — let network effects compound</h3>
-        <p>Every user's scans improve everyone's comparisons — classic data network effect. Freemium
+        <h3>Growth - let network effects compound</h3>
+        <p>Every user's scans improve everyone's comparisons - classic data network effect. Freemium
         launches here, which is why AI cost per user was driven from $3.06 toward &lt;$1 <i>before</i>
         scale: a free tier that bleeds money kills you exactly when you're winning.</p>
       </div>
       <div class="card">
         <div class="story-tags" style="display:flex;gap:0.45rem;margin-bottom:0.5rem"><span class="pill grey">Mapped</span></div>
-        <h3>Maturity — monetise both sides</h3>
+        <h3>Maturity - monetise both sides</h3>
         <p>Consumer side: premium tier (basket planning, price alerts). Business side: the curated,
-        cross-retailer price database becomes market intelligence no single retailer owns — valuable
+        cross-retailer price database becomes market intelligence no single retailer owns - valuable
         to FMCG brands and retailers themselves. The curation and provenance work exists to make
         this data sellable.</p>
       </div>
       <div class="card">
         <div class="story-tags" style="display:flex;gap:0.45rem;margin-bottom:0.5rem"><span class="pill blue">Renewal branch</span></div>
-        <h3>Renewal — extend before decline</h3>
+        <h3>Renewal - extend before decline</h3>
         <p>The identity engine (barcode → alias → attributes) is category-agnostic: pharmacy, pet
-        supplies, DIY, fuel — and geography-agnostic beyond Cyprus. The renewal decision gets made
+        supplies, DIY, fuel - and geography-agnostic beyond Cyprus. The renewal decision gets made
         at the top of the maturity curve, not on the way down.</p>
       </div>
     </div>
